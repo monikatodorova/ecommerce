@@ -1,0 +1,67 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="product-details">
+        <div class="container">
+            <h3>{{ product.name }}</h3>
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="{{ product.imageUrl }}" alt="">
+                </div>
+                <div class="col-md-7">
+                    <h5>Specifications</h5>
+                    <p>{{ product.description }}</p>
+                    <span class="estimation"><i class="fa fa-truck" aria-hidden="true"></i> 3-4 weeks</span>
+                    <span class="estimation"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> $5</span>
+                    <p class="small-text">*Delivery time and price estimation</p>
+                    <div class="order-info">
+                        <div>
+                            <p class="small-text mb-0">From</p>
+                            <h5 class="price mb-0">€{{ product.price|floatformat:2 }}</h5>
+                            <p class="small-text mb-0 mt-0">Incl. BTW</p>
+                        </div>
+                        <div>
+                            <a data-product={{ product.id }} data-action="add"
+                               class="btn btn-primary add-btn update-cart">Add to cart
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="game-rules">
+                <h3 class="mt-5">Gameplay rules</h3>
+                <div class="two-column-container" id="contentContainer"></div>
+                <div class="data" style="display: none">{{ product.rules }}</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Retrieve the dynamic text from the server or database
+        const element = document.querySelector(".data");
+        const dynamicText = element.innerHTML;
+        console.log(dynamicText)
+
+        // Split the text into sections based on the numbered pattern
+        const sections = dynamicText.split(/\d+\.\s/).filter(Boolean);
+
+        // Generate the HTML markup for the sections
+        let html = "";
+        sections.forEach(function (section) {
+            const lines = section.split("\n");
+            const sectionNumber = lines.shift().trim();
+            const sectionContent = lines.map(function (line) {
+                return "<li>" + line.trim() + "</li>";
+            }).join("");
+
+            html += "<b>" + sectionNumber + "</b>";
+            html += "<ul>" + sectionContent + "</ul>";
+        });
+
+        // Set the generated HTML to the container element
+        document.getElementById("contentContainer").innerHTML = html;
+    </script>
+
+{% endblock %}

@@ -1,0 +1,165 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="main-home">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="box">
+                        <h3>Your Gateway To Epic</h3>
+                        <h3><span>Board Game</span> Adventures</h3>
+                        <p>Dive into our vast collection, from classics to new releases. Unleash your competitive spirit
+                            and
+                            embark on unforgettable tabletop experiences. Gather your friends and family for hours of
+                            immersive fun. Start your journey today!</p>
+                        <button class="btn btn-primary"><a href="{% url 'store' %}">Buy a game</a></button>
+                        <button class="btn btn-secondary"><a href="{% url 'home' %}#overview">More information</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main-info">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="image">
+                        <img src="{% static 'images/png/cart.svg' %}" alt="cart">
+                    </div>
+                    <div class="info">
+                        <h5>Buy your new challenging game</h5>
+                        <p>Buy games online with ease and convenience, bringing the joy of gaming right to your
+                            doorstep.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="image">
+                        <img src="{% static 'images/png/questions.svg' %}" alt="cart">
+                    </div>
+                    <div class="info">
+                        <h5>Contact us for any questions</h5>
+                        <p>Contact us for any inquiries or assistance regarding our games. We're here to help!</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="image">
+                        <img src="{% static 'images/png/notes.svg' %}" alt="cart">
+                    </div>
+                    <div class="info">
+                        <h5>Find out the game rules</h5>
+                        <p>Access game rules effortlessly on our website, ensuring an enjoyable gaming experience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-products">
+        <div class="container">
+            <h3>Check out our products</h3>
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-md-3">
+                        <div class="product">
+                            <img src="{{ product.imageUrl }}" alt="Dominos">
+                            <h5>{{ product.name }}</h5>
+                            <p>{{ product.shortDescription }}</p>
+                            <h5>€{{ product.price|floatformat:2 }}<span>Incl. BTW</span></h5>
+                            <a href="{% url 'store' %}" class="btn btn-primary">See more</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main-about" id="overview">
+            <h3>Company overview</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="about-section-title active" id="about">About us</div>
+                    <div class="about-section-title" id="history">Company history</div>
+                    <div class="about-section-title" id="contact">Contact us</div>
+                </div>
+                <div class="col-md-8">
+                    <div class="about content show">
+                        <p>We are a board game company driven by creativity and passion. Our mission is to create
+                            captivating games that bring joy and unforgettable experiences to tabletop enthusiasts
+                            worldwide. Join us on this exciting journey of imagination and fun!</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <p>Our mission is to create exceptional board games that ignite imaginations, foster
+                                    social
+                                    connections, and provide memorable experiences for players of all ages and
+                                    backgrounds.
+                                    We strive to engage and entertain, promoting the joy of tabletop gaming while
+                                    encouraging strategic thinking, creativity, and friendly competition.</p>
+                            </div>
+                            <div class="col-6">
+                                <p>To be a leading force in the board game industry, recognized for our commitment to
+                                    innovation, quality, and immersive gameplay, inspiring individuals and communities
+                                    worldwide to come together, share laughter, and create lasting memories through the
+                                    power of our games.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="history content hide">
+                        <p>Established in 2000, our board game company has grown from a small group of passionate
+                            enthusiasts into a renowned player in the industry. Our mission has always been to create
+                            exceptional board games that ignite imaginations and bring joy to tabletop enthusiasts
+                            worldwide.</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <p>Since our inception, we have been committed to fostering social connections and
+                                    providing
+                                    memorable experiences for players of all ages and backgrounds. We strive to engage
+                                    and
+                                    entertain through strategic thinking, creativity, and friendly competition. Our
+                                    dedication to innovation, quality, and immersive gameplay has earned us recognition
+                                    as a
+                                    leading force in the board game market.</p>
+                            </div>
+                            <div class="col-6">
+                                <p>Since our inception, we have been committed to fostering social connections and
+                                    providing
+                                    memorable experiences for players of all ages and backgrounds. We strive to engage
+                                    and
+                                    entertain through strategic thinking, creativity, and friendly competition. Our
+                                    dedication to innovation, quality, and immersive gameplay has earned us recognition
+                                    as a
+                                    leading force in the board game market.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact content hide">
+                        <p><b>Have any questions?</b></p>
+                        <p>Don't hesitate to get in touch with us, and our dedicated team will be here to provide you
+                            with prompt and helpful support.</p>
+                        <form action="">
+                            <div class="mb-2">
+                                <input type="email" class="form-control" id="exampleFormControlInput"
+                                       placeholder="Your email...">
+                                <textarea class="form-control" id="exampleFormControlTextarea" rows="5"
+                                          placeholder="Your message..."></textarea>
+                            </div>
+                            <button class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-cta">
+        <div class="container">
+            <div class="cta">
+                <div class="message">Find the perfect game for you!</div>
+                <div class="cta-button"><a href="{% url 'store' %}">Order now</a></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

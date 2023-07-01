@@ -1,19 +1,28 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
-<h3>Login</h3>
 
-<form action="" method="POST">
-    {% csrf_token %}
-    username
-    <input type="text" name="username">
-    password
-    <input type="password" name="password">
-    <input type="submit" name="Login">
-</form>
+    <div class="container">
+        <div class="login">
+            <div class="form-box">
+                <h3>Log in</h3>
+                <p>Enter the required info to log in</p>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="username" class="form-control" placeholder="Username">
+                    <input type="password" name="password" class="form-control" placeholder="Password">
+                    <input type="submit" class="btn btn-primary" name="Login">
+                </form>
+                <p style="text-align: center">Don't have an account? <a href="{% url 'register' %}">Sign up</a></p>
+            </div>
+            <div class="image">
+                <img src="{% static 'images/login.png' %}" alt="Login page">
+            </div>
+        </div>
+    </div>
 
-{% for message in messages %}
-    <p>{{ message }}</p>
-{% endfor %}
-<p>Dont have an account? <a href="{% url 'register' %}">Sign up</a></p>
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+
 {% endblock %}
